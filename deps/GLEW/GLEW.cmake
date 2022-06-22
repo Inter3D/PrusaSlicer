@@ -2,6 +2,11 @@
 set(OpenGL_GL_PREFERENCE "LEGACY") # to prevent a nasty warning by cmake
 find_package(OpenGL QUIET REQUIRED)
 
+set(_glew_egl "")
+if (UNIX AND NOT APPLE)
+   set (_glew_egl "-DGLEW_EGL=ON")
+endif ()
+
 prusaslicer_add_cmake_project(
   GLEW
   URL https://sourceforge.net/projects/glew/files/glew/2.2.0/glew-2.2.0.zip
@@ -9,7 +14,7 @@ prusaslicer_add_cmake_project(
   SOURCE_SUBDIR build/cmake
   CMAKE_ARGS
     -DBUILD_UTILS=OFF
-    -DGLEW_EGL=ON
+    ${_glew_egl}
 )
 
 if (MSVC)
