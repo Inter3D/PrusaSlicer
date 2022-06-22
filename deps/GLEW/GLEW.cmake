@@ -9,6 +9,7 @@ prusaslicer_add_cmake_project(
   SOURCE_SUBDIR build/cmake
   CMAKE_ARGS
     -DBUILD_UTILS=OFF
+    -DGLEW_EGL=ON
 )
 
 if (MSVC)
